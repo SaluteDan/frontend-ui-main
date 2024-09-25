@@ -1,0 +1,116 @@
+{
+  "collection": "MODERN SHAPES",
+  "artist": "Attr.artist",
+  "address": "0xdfea2b364db868b1d2601d6b833d74db4de94460",
+  "description": "This is the description of the collection.",
+  "mint": {
+    "limit": 4000,
+    "cost": 250,
+    "tier": 1,
+    "count": 100,
+    "account": 50,
+    "vote": 100
+  },
+  "access": {
+    "write": 1,
+    "read": 3
+  },
+  "attributes": {
+    "attribute1": {
+      "name": "Background",
+      "Weight": 100,
+      "cost": 100,
+      "selected": "option1",
+      "options": {
+        "option1": {
+          "name": "Lime",
+          "image": "collection/imgs/01/1.png",
+          "Weight": 60,
+          "account": "Attr1.option1.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        },
+        "option2": {
+          "name": "Aqua",
+          "image": "collection/imgs/01/2.png",
+          "Weight": 30,
+          "account": "Attr1.option2.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        },
+        "option3": {
+          "name": "Sand",
+          "image": "collection/imgs/01/3.png",
+          "Weight": 10,
+          "account": "Attr1.option3.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        }
+      }
+    },
+    "attribute2": {
+      "name": "Middle Ground",
+      "Weight": 100,
+      "cost": 100,
+      "selected": "option1",
+      "options": {
+        "option1": {
+          "name": "Green",
+          "image": "collection/imgs/02/1.png",
+          "Weight": 60,
+          "account": "Attr2.option1.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        },
+        "option2": {
+          "name": "Blonde",
+          "image": "collection/imgs/02/2.png",
+          "Weight": 30,
+          "account": "Attr2.option2.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        },
+        "option3": {
+          "name": "Black",
+          "image": "collection/imgs/02/3.png",
+          "Weight": 10,
+          "account": "Attr2.option3.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        }
+      }
+    },
+    "attribute3": {
+      "name": "Foreground",
+      "Weight": 100,
+      "cost": 100,
+      "selected": "option1",
+      "options": {
+        "option1": {
+          "name": "Yellow",
+          "image": "collection/imgs/03/1.png",
+          "Weight": 60,
+          "account": "Attr1.option1.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        },
+        "option2": {
+          "name": "Blue",
+          "image": "collection/imgs/03/2.png",
+          "Weight": 30,
+          "account": "Attr1.option2.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        },
+        "option3": {
+          "name": "Red",
+          "image": "collection/imgs/03/3.png",
+          "Weight": 10,
+          "account": "Attr1.option3.staked",
+          "input": 0,
+          "Optionweight": "Attr1.option1.input"
+        }
+      }
+    }
+  }
+}
