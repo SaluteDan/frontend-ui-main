@@ -24,7 +24,7 @@ interface CollectionHookData {
 }
 function CollectionPage() {
   const { collectionData, editionData, isLoading, error } = useCollection() as CollectionHookData;
-  const [gridLayout, setGridLayout] = useState(true)
+  const [gridLayout, setGridLayout] = useState(false)
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error loading data: {error.message}</p>

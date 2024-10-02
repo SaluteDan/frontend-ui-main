@@ -150,7 +150,7 @@ const AttributesAccordion = ({
       0
     );
     const newStakedAttributeCount = Object.values(newStakeValues).filter(
-      (value) => value > attributes[Object.keys(newStakeValues)[0]].cost
+      (value) => value >= attributes[Object.keys(newStakeValues)[0]].cost
     ).length;
     onStakeChange(
       newTotalStake,

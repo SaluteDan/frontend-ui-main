@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_components_buttons",
+  "info": {
+    "name": "Button",
+    "icon": "location-arrow"
+  },
+  "options": {},
+  "attributes": {
+    "CTA": {
+      "type": "string"
+    },
+    "Caption": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lists",
+  "info": {
+    "name": "list",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "List": {
+      "type": "dynamiczone",
+      "components": [
+        "list.item"
+      ]
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

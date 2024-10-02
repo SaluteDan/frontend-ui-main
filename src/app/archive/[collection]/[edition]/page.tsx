@@ -91,8 +91,8 @@ const EditionPage: NextPage<EditionPageProps> = ({ params }) => {
 
   return (
     <>
-      <section className="w-full px-4 md:px-10 flex flex-col items-center justify-start py-4 lg:pb-7 box-border gap-6 text-left text-gray-400 pt-0">
-        <div className="w-full flex flex-row items-start justify-start gap-[0.75rem] text-left text-[10px] lg:text-[0.75rem] text-gray-400 *:py-[0.45rem] *:px-[0.65rem] hidden md:block">
+      <section className="w-full px-4 md:px-10 flex flex-col items-center justify-start py-4 md:py-4 lg:pb-7 box-border gap-2 md:gap-6 text-left text-gray-400 pt-0">
+        {/* <div className="w-full flex flex-row items-start justify-start gap-[0.75rem] text-left text-[10px] lg:text-[0.75rem] text-gray-400 *:py-[0.45rem] *:px-[0.65rem] hidden md:block">
           <div className="rounded-xl border-gray-400 border-[1px] border-solid flex flex-row items-center justify-center py-[0.45rem] px-[0.65rem]">
             <Link href={`/archive/${currentEdition.collection}`} passHref>
               <span className="leading-[1rem] uppercase">
@@ -106,7 +106,7 @@ const EditionPage: NextPage<EditionPageProps> = ({ params }) => {
           <div className="rounded-xl border-gray-400 border-[1px] border-solid flex flex-row items-center justify-center">
             <span className="leading-[1rem] uppercase">0x66...eea7</span>
           </div>
-        </div>
+        </div> */}
         <EditionBar
           editionData={currentEdition}
           collectionData={currentCollection}

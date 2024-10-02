@@ -1,15 +1,7 @@
 import "./globals.css";
-import React, {
-  useEffect,
-  useState,
-  createContext,
-  PropsWithChildren,
-  useContext,
-} from "react";
+import React from "react";
 import Head from "next/head";
-import Script from "next/script";
 import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
 
 import {
   EnvironmentProps,
@@ -25,27 +17,26 @@ export const metadata: Metadata = {
   description: "COMMUNITY-CURATED WEB 3.0 MARKETPLACE",
 };
 
-const environmentProps: EnvironmentProps = {
-  // all the properties that can be passed to the `useEnvironment`
-  walletAddress: process.env.NEXT_PUBLIC_ADDRESS,
-  tokenId: process.env.NEXT_PUBLIC_TOKEN_ID,
-  tokentier: process.env.NEXT_PUBLIC_TOKEN_TIER,
-  tokendiscount: process.env.NEXT_PUBLIC_TOKEN_DISCOUNT,
-  balance: process.env.NEXT_PUBLIC_ATTR_BALANCE,
-  pointstaked: process.env.NEXT_PUBLIC_POINTS_STAKED,
-  pointsfarmed: process.env.NEXT_PUBLIC_POINTS_MINED,
-  votecount: process.env.NEXT_PUBLIC_VOTE_COUNT,
-  networkName: process.env.NEXT_PUBLIC_NETWORK_NAME,
-  blockchainNetwork: process.env.NEXT_PUBLIC_CHAIN,
-  apiUrl: process.env.NEXT_PUBLIC_API_URL,
-};
-
 export default function RootLayout({
   children,
-  pageProps,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const environmentProps: EnvironmentProps = {
+    // all the properties that can be passed to the `useEnvironment`
+    walletAddress: process.env.NEXT_PUBLIC_ADDRESS,
+    tokenId: process.env.NEXT_PUBLIC_TOKEN_ID,
+    tokentier: process.env.NEXT_PUBLIC_TOKEN_TIER,
+    tokendiscount: process.env.NEXT_PUBLIC_TOKEN_DISCOUNT,
+    balance: process.env.NEXT_PUBLIC_ATTR_BALANCE,
+    pointstaked: process.env.NEXT_PUBLIC_POINTS_STAKED,
+    pointsfarmed: process.env.NEXT_PUBLIC_POINTS_MINED,
+    votecount: process.env.NEXT_PUBLIC_VOTE_COUNT,
+    networkName: process.env.NEXT_PUBLIC_NETWORK_NAME,
+    blockchainNetwork: process.env.NEXT_PUBLIC_CHAIN,
+    apiUrl: process.env.NEXT_PUBLIC_API_URL,
+  };
+
   return (
     <EnvironmentProvider {...environmentProps}>
       <html lang="en">
@@ -57,7 +48,7 @@ export default function RootLayout({
         </Head>
         <body className="bg-gray-50">
           <ClientLayout>
-            <Header/>
+            <Header />
             {children}
             <Footer />
           </ClientLayout>

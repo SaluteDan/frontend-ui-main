@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_components_modals",
+  "info": {
+    "name": "Modal",
+    "icon": "scroll",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "Headline": {
+      "type": "string"
+    },
+    "Body": {
+      "type": "text"
+    },
+    "CTA": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.button"
+    },
+    "Subtitle": {
+      "type": "string"
+    }
+  }
+}

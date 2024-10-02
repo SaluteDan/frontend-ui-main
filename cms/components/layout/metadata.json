@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_layout_metadata",
+  "info": {
+    "name": "Metadata",
+    "icon": "apple-alt"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    }
+  }
+}

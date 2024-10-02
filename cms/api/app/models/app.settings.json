@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "apps",
+  "info": {
+    "name": "App",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "list": {
+      "model": "list"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.header",
+        "layout.section"
+      ]
+    }
+  }
+}

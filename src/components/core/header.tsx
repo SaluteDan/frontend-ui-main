@@ -17,7 +17,7 @@ import { Fragment } from "react";
 import { useEnvironment } from "@/app/env/provider";
 
 const Header: React.FC = () => {
-  const { walletAddress, tokenId, balance, tokentier  } = useEnvironment();
+  const { walletAddress, tokenId, balance, tokentier } = useEnvironment();
 
   return (
     <header className="w-full text-left text-[0.625rem] text-text-text-primary md:pt-2">
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
           <div className="bg-gray-200 flex flex-row items-start justify-items-stretch py-[0.35rem] md:py-[0.55rem] pl-2 pr-1 box-border">
             {/*  if token */}
             <span
-              className={`mr-[0.5rem] size-7 rounded-full ${tokentier == 1 ? 'bg-red-500' : tokentier == 2 ? 'bg-blue-500' : tokentier == 3 ? 'bg-green-500' : 'bg-gray-300'}`} // Added default class
+              className={`mr-[0.5rem] size-7 rounded-full bg-gradient-to-r ${tokentier == 1 ? 'from-yellow-200 to-yellow-400' : tokentier == 2 ? 'from-orange-200 to-orange-400' : tokentier == 3 ? 'from-slate-200 to-slate-400' : 'bg-gray-300'}`} // Added default class
             />
             <div className="grid grid-rows-2 items-stretch text-xs content-center justify-items-stretch justify-center h-7">
               <span className="tracking-[1px] uppercase">#:{tokenId}</span>
@@ -49,8 +49,9 @@ const Header: React.FC = () => {
                 <SheetHeader></SheetHeader>
                 <SheetDescription>
                   <div className="grid justify-between h-[100vh]">
+                    
                     <ul className="w-full flex flex-col items-start justify-start gap-[1.25rem_0rem] text-left text-[2.875rem] md:pt-[100px] text-gray-800">
-                      {MenuItems.map((item, index) => (
+                      {MenuItems.map((item: { href: string; label: string }, index: number) => (
                         <Fragment key={index}>
                           <li>
                             <a

@@ -42,10 +42,10 @@ const ArchivePage: NextPage = () => {
 
   return (
     <>
-      <section className="w-full px-4 md:px-10 flex flex-col items-center justify-start py-4 lg:pb-7 box-border gap-1 text-left text-gray-400 pt-0">
+      <section className="w-full px-4 md:px-10 flex flex-col items-center justify-start py-4 lg:pb-7 box-border text-left text-gray-400 pt-0">
         
         <ArchiveBar data={ArchiveData || []} />
-        <section className="grid md:grid-cols-4 grid-cols-1 gap-4 w-full mt-4">
+        <section className="grid md:grid-cols-4 grid-cols-1 gap-4 w-full mt-2 md:mt-4">
           {ArchiveData && ArchiveData.map((archive: ArchiveData, archiveIndex: number) => (
             // for each archive item, render an ArchiveItem component
             // calcuate if the collection open or close to mint

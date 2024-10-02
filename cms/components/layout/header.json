@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_layout_headers",
+  "info": {
+    "name": "Header",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "lists": {
+      "collection": "list"
+    }
+  }
+}

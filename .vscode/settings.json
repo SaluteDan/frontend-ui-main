@@ -1,4 +1,5 @@
 {
     "CodeGPT.apiKey": "CodeGPT Plus Beta",
-    "storyExplorer.storiesGlobs": ""
+    "storyExplorer.storiesGlobs": "",
+    "git.ignoreLimitWarning": true
 }

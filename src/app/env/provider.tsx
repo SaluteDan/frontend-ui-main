@@ -8,10 +8,11 @@ type EnvironmentProps = {
   tokentier: number;
   tokendiscount: number | undefined;
   balance?: string | null;
-  pointstaked? :string | null;
-  pointsfarmed? :string | null;
-  votecount? :number | null;
+  pointstaked?: string | null;
+  pointsfarmed?: string | null;
+  votecount?: number | null;
   blockchainNetwork?: string;
+  appData?: object;
 }
 
 const EnvironmentContext = createContext<EnvironmentProps>({});

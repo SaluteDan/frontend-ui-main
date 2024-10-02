@@ -88,13 +88,13 @@ const Enrol = () => {
   return (
     <>
       <section className="w-full flex flex-col items-center justify-start pt-[0rem] pb-[2.5rem] box-border gap-[1.875rem_0rem] text-left text-[0.75rem] text-gray-600 px-4 lg:px-10">
-        <div className="self-stretch flex flex-row items-start justify-start">
+        {/* <div className="self-stretch flex flex-row items-start justify-start">
           <div className="rounded-xl flex flex-row items-center justify-center py-[0.5rem] px-[0.75rem] border-[1px] border-solid tracking-[1px] leading-[1rem] uppercase border-gray-600">
             <span className="tracking-[1px] leading-[1rem] uppercase">
               MEMBERSHIP
             </span>
           </div>
-        </div>
+        </div> */}
         <div className="text-3xl lg:text-[3.971rem] flex flex-col w-full text-gray-800 gap-4 md:gap-14">
           <div className="flex flex-row items-start justify-start">
             <h1 className="tracking-[1.51px] w-full uppercase leading-none">
@@ -260,13 +260,13 @@ const Enrol = () => {
         </div>
       </section>
       <section className="w-full  bg-gray-800 flex flex-col justify-start lg:p-[2.5rem] p-4 pb-10 box-border gap-[2.25rem_0rem] text-left text-[0.75rem] text-gray-100 ">
-        <section className="self-stretch flex flex-row items-start justify-start">
+        {/* <section className="self-stretch flex flex-row items-start justify-start">
           <div className="rounded-[10px] flex flex-rowjustify-center py-[0.5rem] px-[0.75rem] border-[1px] border-solid border-gray-100">
             <span className="tracking-[1px] leading-[1rem] uppercase">
               THE GALLERY
             </span>
           </div>
-        </section>
+        </section> */}
         <p className="text-3xl lg:text-[3.971rem] tracking-[2.46px] uppercase leading-none">
           ATTRIBUTES is A Customisable Web 3.0 GALLERY.
         </p>
@@ -300,11 +300,11 @@ const Enrol = () => {
       <section className="w-full flex flex-col items-start justify-start p-4 lg:p-[2.5rem] box-border text-left text-[0.75rem] text-gray-800 ">
         <div className="w-full">
           <div className="flex flex-row items-start justify-between pt-[0rem] px-[0rem] pb-[1.25rem] box-border">
-            <div className="rounded-xl border-gray-800 border-[1px] border-solid flex flex-row items-center justify-center py-[0.5rem] px-[0.75rem]">
+            {/* <div className="rounded-xl border-gray-800 border-[1px] border-solid flex flex-row items-center justify-center py-[0.5rem] px-[0.75rem]">
               <div className="tracking-[1px] leading-[1rem] uppercase">
                 how it works
               </div>
-            </div>
+            </div> */}
             <div className="flex flex-row items-center justify-items-center gap-3">
               {paginationindicator}
             </div>

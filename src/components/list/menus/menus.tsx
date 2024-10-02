@@ -10,11 +10,11 @@ import React from "react";
 
 // Main menu items
 const menuItems = [
-    { label: "MINT", href: "/mint" },
+    { label: "MINT", href: "/" },
     { label: "COLLECTION", href: "/archive" },
-    { label: "EXCHANGE", href: "/exchange" },
+    // { label: "EXCHANGE", href: "/exchange" },
     { label: "ENROL", href: "/enrol" },
-    { label: "ABOUT US", href: "/about" },
+    // { label: "ABOUT US", href: "/about" },
     // Add more items as needed
 ];
 

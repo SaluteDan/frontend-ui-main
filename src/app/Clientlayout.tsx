@@ -1,17 +1,15 @@
 // app/ClientLayout.tsx
 "use client";
 
-import { useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { createContext, PropsWithChildren, useContext } from "react";
+import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-export default function ClientLayout({ children }) {
-
+export default function ClientLayout({ children }: PropsWithChildren<{}>) {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Your interactive layout content here */}
-      {children}
+        {children} {/* Render children directly */}
     </QueryClientProvider>
   );
 }

@@ -56,6 +56,7 @@ export function Home() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [selectedMetadata, setSelectedMetadata] = useState("Hidden");
   const [resetStakeValues, setResetStakeValues] = useState(false);
+  const [canvasImage, setCanvasImage] = useState<string | null>(null); // Define canvasImage state
 
   const { walletAddress, balance, tokendiscount, tokentier } = useEnvironment();
 
@@ -144,6 +145,7 @@ export function Home() {
           );
         }
       });
+      setCanvasImage(canvas.toDataURL()); // Capture the canvas image after drawing
     });
   }, []);
 
@@ -441,6 +443,7 @@ export function Home() {
             className="w-full opacity-40"
           />
         </span>
+        
 
         {/* For Mobile */}
       </div>
@@ -468,7 +471,7 @@ export function Home() {
                   </div>
                   {artworkData["mint"]["count"]}/{artworkData["mint"]["limit"]}
                 </div>
-                <span className="flex flex-row gap-2 justify-end">
+                <span className="flex flex-row gap-1 justify-end">
                   {/* icon button used to select the metadata value to hiddn && shows when selectedMetadata is not hidden */}
 
                   <Select onValueChange={(value) => setSelectedMetadata(value)}>
@@ -502,7 +505,7 @@ export function Home() {
             <div className="self-stretch flex flex-col items-center justify-start pt-[0rem] px-[0rem] pb-[1.25rem] gap-[0.5rem_0rem]">
               <div className="self-stretch flex flex-row items-center justify-between py-[0rem] text-[0.625rem]">
                 <div className="flex flex-row gap-4 items-center">
-                  <Attributespopver />
+                  {/* <Attributespopver /> */}
                   <div className="tracking-[0.34px] leading-[1rem] uppercase col-start-1">
                     ATTRIBUTES
                   </div>
@@ -576,10 +579,11 @@ export function Home() {
         totalStake,
         artworkData,
         balance,
-        tokentier,
+        tokendiscount,
         stakedAttributeCount,
         stakeValues,
-        selectedOptions
+        selectedOptions,
+        canvasImage // Pass the canvas image here
       )}
     </main>
   );

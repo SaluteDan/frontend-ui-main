@@ -11,6 +11,8 @@ import * as PopOver from "@radix-ui/react-popover";
 
 import { maskString } from "@/components/helpers/collection/collection";
 
+import Preloader, { imageStyle } from "@/components/ui/icons/pre-loader";
+
 interface ConfirmationModalProps {
   // Mint Props
   totalStake: {} | "N/A";
@@ -25,6 +27,8 @@ interface ConfirmationModalProps {
   // Modals
   isAlertOpen: boolean;
   setIsAlertOpen: (isOpen: boolean) => void;
+
+  canvasImage: string | null;
 }
 
 const ConfirmationModal = ({
@@ -36,6 +40,7 @@ const ConfirmationModal = ({
   isAlertOpen,
   setIsAlertOpen,
   balance,
+  canvasImage,
 }: ConfirmationModalProps) => {
   return (
     <AlertDialog.Root open={isAlertOpen} onOpenChange={setIsAlertOpen}>
@@ -62,13 +67,29 @@ const ConfirmationModal = ({
                       align="end"
                       className="flex flex-row flex-wrap text-xs gap-y-0 shadow-none border-none bg-black opacity-90 text-gray-100 rounded-xl p-4 justify-self-end max-w-xs"
                     >
+                      <span className="basis-1/3">ROYALTIES</span>
+                      <span className="flex flex-col justify-self-end basis-2/3 *:py-1 *:border-b-[1px] *:border-gray-600">
+                        <span className="p-0">PRIMARY</span>
+                        <span className="justify-self-end">
+                          {artworkData.royalty || "N/A"} ARTIST
+                        </span>
+                        <span className="justify-self-end basis-1/3">
+                          {artworkData.royalty || "N/A"} ATTRIBUTES GALLERY
+                        </span>
+                        <span className="justify-self-end basis-2/3">
+                          SECONDARY
+                        </span>
+                        <span className="justify-self-end">
+                          {artworkData.royalty || "N/A"} ARTIST
+                        </span>
+                        <span className="justify-self-end basis-1/3">
+                          {artworkData.royalty || "N/A"} ATTRIBUTES GALLERY
+                        </span>
+                      </span>
+
                       <span className="basis-2/3">ADDRESS:</span>
                       <span className="justify-self-end basis-1/3">
                         {maskString(artworkData.address)}
-                      </span>
-                      <span className="basis-2/3">SECONDARY ROYALITY:</span>
-                      <span className="justify-self-end basis-1/3">
-                        {artworkData.royalty || "N/A"}
                       </span>
                       <span className="basis-2/3">CREATION DATE:</span>
                       <span className="justify-self-end basis-1/3">
@@ -87,25 +108,24 @@ const ConfirmationModal = ({
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-spacing-4 text-[0.625rem]">
               <div className="self-stretch rounded-xl bg-white/10 flex flex-col items-center justify-start p-4 box-border gap-[0.6rem]">
-                <div className="self-stretch flex flex-row items-center justify-between pt-[0rem] pb-[0.6rem]">
-                  <div className="flex flex-row items-start justify-start">
+                <div className="self-stretch flex flex-row items-center justify-between pt-[0rem]">
                     <div className="leading-[0.959rem] uppercase">PREVIEW</div>
-                  </div>
                 </div>
-                <div className="self-stretch flex flex-col items-center justify-start gap-[0.625rem] text-[1.439rem]">
+                <div className="self-stretch flex flex-col items-center justify-start gap-4 text-2xl">
                   <Image
                     className="object-cover size-24 md:size-32"
-                    alt=""
-                    // thumbnail or placeholder
-                    src={
-                      artworkData.thumbnail || "https://loremflickr.com/220/220"
-                    }
+                    alt="Canvas Preview"
+                    src={canvasImage || Preloader()} // Fallback image
                     width={180}
                     height={180}
+                    placeholder={Preloader()}
+                    style={{
+                      objectFit: 'contain' 
+                    }}
                   />
-                  <div className="self-stretch flex flex-col items-start justify-start pt-[0.6rem] pb-[0rem]">
-                    <h3 className="tracking-[0.96px] uppercase">#100</h3>
-                    <div className="grid grid-cols-[1fr_1fr] items-center justify-between uppercase text-sm w-full">
+                  <div className="self-stretch flex flex-col items-start justify-start pt-[0.6rem] pb-[0rem] gap-1">
+                    
+                    <div className="grid grid-cols-[1fr_0.5fr] items-center justify-between uppercase text-sm w-full">
                       <h4 className="text-sm">VOLUME:</h4>
                       <h4 className="text-sm justify-self-end">
                         {Number(totalStake)} ATTR
@@ -114,6 +134,28 @@ const ConfirmationModal = ({
                       <span className="text-sm justify-self-end">
                         {Number(stakedAttributeCount)}/
                         {getAttributecount(artworkData.attributes)}
+                      </span>
+                    </div>
+                    <div className="flex flex-row justify-between items-center w-full">
+                      <h3 className="tracking-[0.96px] uppercase">#100</h3>
+                      <span
+                        className={`group-[.grid-cols-2]:hidden p-2 md:py-2 px-3 ${totalStake == 0 ? "bg-amber-100" : totalStake == 1 ? "bg-orange-100" : totalStake == 2 ? "bg-slate-100" : "bg-gray-200"} rounded-xl place-self-end text-[10px] uppercase leading-none`}
+                      >
+                        {totalStake == 0 && (
+                          <span className="inline-block text-amber-600">
+                            1st Edition
+                          </span>
+                        )}
+                        {totalStake == 1 && (
+                          <span className="inline-block text-orange-600">
+                            2nd Edition
+                          </span>
+                        )}
+                        {totalStake == 2 && (
+                          <span className="inline-block text-slate-600">
+                            Open Edition
+                          </span>
+                        )}
                       </span>
                     </div>
                   </div>

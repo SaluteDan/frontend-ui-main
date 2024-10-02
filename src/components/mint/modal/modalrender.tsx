@@ -20,7 +20,8 @@ export const renderModal = (
   tokentier: number,
   stakedAttributeCount: number,
   stakeValues: number,
-  selectedOptions: number
+  selectedOptions: number,
+  canvasImage: string
 ) => {
   if (!isAlertOpen) return null;
 
@@ -39,6 +40,7 @@ export const renderModal = (
         selectedOptions={selectedOptions}
         artworkData={artworkData}
         balance={balance}
+        canvasImage={canvasImage}
       />
     );
   } else {

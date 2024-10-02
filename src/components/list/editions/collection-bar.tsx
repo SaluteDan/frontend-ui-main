@@ -108,7 +108,7 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
                 </div>
                 <div className="text-xs lg:text-md text-gray-500">
                   <div className="tracking-[0.12px] uppercase">
-                    ATTR POINTS VOLUME
+                    ATTR. VOLUME
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
                 </div>
                 <div className="text-xs lg:text-md text-gray-500">
                   <div className="tracking-[0.12px] uppercase">
-                    ethereum VOLUME
+                    SOLANA VOLUME
                   </div>
                 </div>
               </div>
@@ -274,8 +274,8 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
       <div className="text-3xl md:text-6xl lg:text-[8.451rem] tracking-[2.46px] lg:leading-[8.451rem] uppercase">
         {collectionData.collection ?? "N/A"}
       </div>
-      <div className="flex flex-row items-start justify-between gap-4">
-        <div className="md:grid grid-cols-2 md:grid-cols-8 items-start justify-start gap-5 lg:gap-2 md:order-first order-last w-full md:w-auto lg:text-2xl hidden">
+      <div className="flex flex-row items-end justify-between gap-4">
+        <div className="md:grid grid-cols-2 md:grid-cols-8 items-start justify-start gap-5 lg:gap-4 md:order-first order-last w-full md:w-auto lg:text-2xl hidden">
           <div className="self-stretch flex flex-row items-start justify-start">
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="flex flex-row items-end justify-start">
@@ -317,7 +317,7 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
               </div>
               <div className="text-xs lg:text-md text-gray-500">
                 <div className="tracking-[0.12px] uppercase">
-                  ATTR POINTS VOLUME
+                  ATTR. VOLUME
                 </div>
               </div>
             </div>
@@ -332,7 +332,7 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
               </div>
               <div className="text-xs lg:text-md text-gray-500">
                 <div className="tracking-[0.12px] uppercase">
-                  ethereum VOLUME
+                  SOLANA VOLUME
                 </div>
               </div>
             </div>
@@ -377,7 +377,7 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
               </div>
               <div className="text-xs lg:text-md text-gray-500">
                 <div className="tracking-[0.12px] uppercase">
-                  ARTIST ROYALTY
+                  ROYALTY
                 </div>
               </div>
             </div>
@@ -391,14 +391,14 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
               </div>
               <div className="text-xs lg:text-md text-gray-500">
                 <div className="tracking-[0.12px] uppercase">
-                  ARTIST ROYALTY
+                  COLLECTION ADDRESS
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-row items-start justify-between gap-[0.625rem] text-[0.75rem] text-gray-400 sm:order-1 w-full md:w-auto">
+        <div className="flex flex-row justify-between gap-[0.625rem] text-[0.75rem] text-gray-400 sm:order-1 w-full md:w-auto">
           <div className="flex flex-row justify-items-end gap-1 *:size-9 *:md:size-10 *:fill-gray-400">
             <div
               onClick={() => ongridchange(!gridlayout)} // Toggle gridlayout state
@@ -416,7 +416,7 @@ const CollectionBar: React.FC<{ collectionData: collectionData }> = ({
               <MagnifyingGlassIcon />
             </div>
           </div>
-          <span className="flex flex-row gap-x-2 md:hidden">
+          <span className="flex flex-row gap-x-1 md:hidden">
             <Select onValueChange={(value) => setSelectedMetadata(value)}>
               <SelectTrigger className="w-auto justify-between border-none shadow-none active:bg-gray-100 text-gray-400 rounded-xl active:ring-0 focus:bg-gray-100 bg-gray-100 focus:ring-0">
                 <SelectValue placeholder="METADATA" defaultValue="Null" />
