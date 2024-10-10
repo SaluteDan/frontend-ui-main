@@ -6,11 +6,11 @@
  *
  */
 
-
-// Edition Data 
+// Edition Data
 // - Used to define the data returned from the API for the edition
-export type EditionData = {
-    collection: string | undefined;
+export type EditionData = [
+  {
+    collection: string | undefined; 
     name: number | string | null;
     artist: string | undefined;
     description: string | undefined;
@@ -18,28 +18,30 @@ export type EditionData = {
     external_url?: string | undefined;
     animation_url?: string | undefined;
     mint: {
-        cost?: number | null;
-        tier?: number | null;
-        account?: number | null;
-        volume?: number | null;
+      cost?: number | null;
+      tier?: number | null;
+      account?: number | null;
+      volume?: number | null;
     };
     membership: number | null;
     transaction: string | undefined;
     address: string | undefined;
     attributes: [
-        {
-            trait_type: string | undefined;
-            value: string | number | null;
-            cost?: number | null;
-            won?: boolean | null;
-            rarity?: number | null;
-        }
+      {
+        trait_type: string | undefined;
+        value: string | number | null;
+        cost?: number | null;
+        won?: boolean | null;
+        rarity?: number | null;
+      },
     ];
-};
+  },
+];
 
 // Archive Data
 // - Used to define the data returned from the API for the archive
-export type ArchiveData = {
+export type ArchiveData = [
+  {
     collection: string | undefined;
     artist: string | null;
     address: string | undefined;
@@ -48,23 +50,25 @@ export type ArchiveData = {
     royalty: number | null;
     thumbnail: string | undefined;
     mint: {
-        limit: number | null;
-        cost: number | null;
-        tier: number | null;
-        count: number | null;
-        account: number | null;
-        vote: number | null;
-        owners: number | null;
+      limit: number | null;
+      cost: number | null;
+      tier: number | null;
+      count: number | null;
+      account: number | null;
+      vote: number | null;
+      owners: number | null;
     };
     access: {
-        write: number | null;
-        read: number | null;
+      write: number | null;
+      read: number | null;
     };
-};
+  },
+];
 
 // Artwork Data
 // - Used to define the data returned from the API for the art generator
-export type ArtworkData = {
+export type ArtworkData = [
+  {
     collection: string | undefined;
     artist: string | undefined;
     address: string | undefined;
@@ -72,38 +76,39 @@ export type ArtworkData = {
     opendate: string | undefined;
     royalty: number | null;
     mint: {
-        limit: number | null;
-        cost: number | null;
-        tier: number;
-        count: number | null;
-        volume: number | null;
+      limit: number | null;
+      cost: number | null;
+      tier: number;
+      count: number | null;
+      volume: number | null;
     };
     access: {
-        write: number;
-        read: number;
+      write: number; 
+      read: number;
     };
     attributes: [
-        {
-            trait_type: string | undefined;
-            weight: number;
+      {
+        trait_type: string | undefined;
+        weight: number;
+        cost: number | null;
+        options: [
+          {
+            value: string | undefined;
+            image: string | undefined;
+            weight: number | null;
+            account: number | null;
             cost: number | null;
-            options: [
-                {
-                    value: string | undefined;
-                    image: string | undefined;
-                    weight: number | null;
-                    account: number | null;
-                    cost: number | null;
-                }
-            ]
-        }
+          },
+        ];
+      },
     ];
-};
+  },
+];
 
 export type imageSource = {
-    attribute: [
-        {
-            [key: string]: string | undefined;
-        }
-    ];
+  attribute: [
+    {
+      [key: string]: string | undefined;
+    },
+  ];
 };

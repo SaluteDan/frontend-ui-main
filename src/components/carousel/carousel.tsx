@@ -45,7 +45,7 @@ const Edition_Carousel: React.FC = () => {
       setApi={setApi}
       className="rounded-xl bg-gray-100/10 flex flex-col p-4 md:p-6 text-[1.25rem] text-gray-400 w-full"
     >
-      <aside className="flex flex-row justify-between">
+      <aside className="flex flex-row justify-between mb-2">
         <span className="tracking-[1.16px] uppercase text-sm md:text-base">
           RECENTLY MINTED
         </span>

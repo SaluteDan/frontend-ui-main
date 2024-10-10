@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // disableStaticImages: true,
-    // unoptimized: true, // Disables sharp-based image optimization
+    disableStaticImages: true,
+    unoptimized: true, // Disables sharp-based image optimization
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {

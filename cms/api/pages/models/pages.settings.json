@@ -24,6 +24,9 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.metadata"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

@@ -23,6 +23,7 @@ import {
 import * as Popover from "@radix-ui/react-popover";
 import { PopoverContent } from "@/components/ui/popover";
 import { renderModal } from "@/components/mint/modal/modalrender";
+import MintBanner from "@/lib/svgmaker";
 
 import { Attributespopver } from "@/components/mint/panel/popover";
 
@@ -52,11 +53,12 @@ export function Home() {
   const [stakedAttributeCount, setStakedAttributeCount] = useState(0);
   const [stakeValues, setStakeValues] = useState({});
   const [selectedOptions, setSelectedOptions] = useState({});
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [selectedMetadata, setSelectedMetadata] = useState("Hidden");
   const [resetStakeValues, setResetStakeValues] = useState(false);
   const [canvasImage, setCanvasImage] = useState<string | null>(null); // Define canvasImage state
+  const [isCanvasReady, setIsCanvasReady] = useState(false);
 
   const { walletAddress, balance, tokendiscount, tokentier } = useEnvironment();
 
@@ -77,11 +79,94 @@ export function Home() {
     return initialOptions;
   }, []);
 
+  // Initialize selected options
   useEffect(() => {
     if (attributes) {
-      setSelectedOptions(initializeSelectedOptions(attributes));
+      const options = initializeSelectedOptions(attributes);
+      console.log("Initialized selected options:", options);
+      setSelectedOptions(options);
     }
   }, [attributes, initializeSelectedOptions]);
+
+  const drawCanvas = useCallback((attrs, selectedOpts) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return; // Ensure canvas is available
+
+    const context = canvas.getContext("2d");
+    if (!context) return; // Ensure context is available
+
+    context.clearRect(0, 0, canvasSize.width, canvasSize.height);
+
+    // Temporary: Draw a simple rectangle to test drawing functionality
+    context.fillStyle = "blue"; // Change color as needed
+    context.fillRect(10, 10, 100, 100); // Draw a rectangle
+
+    // Log the selected options before loading images
+    console.log("Drawing canvas with selected options:", selectedOpts);
+
+    // Create an array of promises for loading images
+    const imagePromises = Object.entries(selectedOpts).map(
+      ([attributeKey, optionKey]) => {
+        return new Promise((resolve) => {
+          const option = attrs[attributeKey]?.options[optionKey];
+          if (option && option.image) {
+            const img = new Image();
+            img.onload = () => resolve({ attributeKey, img });
+            img.src = option.image;
+          } else {
+            resolve(null);
+          }
+        });
+      }
+    );
+
+    // Wait for all images to load, then draw them in reverse order
+    Promise.all(imagePromises).then((images) => {
+      context.clearRect(0, 0, canvasSize.width, canvasSize.height); // Clear before drawing
+      images.reverse().forEach((imageData) => {
+        if (imageData) {
+          context.globalCompositeOperation = "destination-over";
+          context.drawImage(
+            imageData.img,
+            0,
+            0,
+            canvasSize.width,
+            canvasSize.height
+          );
+        }
+      });
+      setCanvasImage(canvas.toDataURL()); // Capture the canvas image after drawing
+    });
+  }, []);
+
+  // Check if canvas is ready
+  useEffect(() => {
+    console.log("Checking if canvas is ready..."); // Log to see if this effect runs
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const context = canvas.getContext("2d");
+      if (context) {
+        setIsCanvasReady(true);
+        console.log("Canvas is ready for drawing."); // Log when canvas is ready
+      } else {
+        console.log("Canvas context is not available."); // Log if context is not available
+      }
+    } else {
+      console.log("Canvas element is not available."); // Log if canvas is not found
+    }
+  }, [canvasRef]);
+
+  // Draw on canvas when attributes, selected options, and canvas are ready
+  useEffect(() => {
+    if (attributes && selectedOptions && isCanvasReady) {
+      console.log("Attributes and selected options are ready for drawing."); // Log before drawing
+      drawCanvas(attributes, selectedOptions);
+    } else {
+      console.log(
+        "Waiting for attributes, selected options, or canvas to be ready."
+      ); // Log if not ready
+    }
+  }, [attributes, selectedOptions, drawCanvas, isCanvasReady]);
 
   const getSelectedOption = (attributeOptions) => {
     let totalWeight = 0;
@@ -106,48 +191,6 @@ export function Home() {
       }
     }
   };
-
-  const drawCanvas = useCallback((attrs, selectedOpts) => {
-    if (!attrs) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const context = canvas.getContext("2d");
-    context.clearRect(0, 0, canvasSize.width, canvasSize.height);
-
-    // Create an array of promises for loading images
-    const imagePromises = Object.entries(selectedOpts).map(
-      ([attributeKey, optionKey]) => {
-        return new Promise((resolve) => {
-          const option = attrs[attributeKey]?.options[optionKey];
-          if (option && option.image) {
-            const img = new Image();
-            img.onload = () => resolve({ attributeKey, img });
-            img.src = option.image;
-          } else {
-            resolve(null);
-          }
-        });
-      }
-    );
-
-    // Wait for all images to load, then draw them in reverse order
-    Promise.all(imagePromises).then((images) => {
-      images.reverse().forEach((imageData) => {
-        if (imageData) {
-          context.globalCompositeOperation = "destination-over";
-          context.drawImage(
-            imageData.img,
-            0,
-            0,
-            canvasSize.width,
-            canvasSize.height
-          );
-        }
-      });
-      setCanvasImage(canvas.toDataURL()); // Capture the canvas image after drawing
-    });
-  }, []);
 
   useEffect(() => {
     if (attributes && selectedOptions) {
@@ -415,7 +458,7 @@ export function Home() {
   if (!artworkData) return <p>No artwork data available</p>;
 
   return (
-    <main className="flex flex-col items-center justify-between lg:px-10 md:pb-20 p-4">
+    <main className="flex flex-col items-center justify-between lg:px-10 md:pb-20 px-4 pb-6 md:gap-4">
       {/* <div className="w-full flex flex-row items-start justify-start gap-3 text-xs text-gray-200">
         <div className="rounded-xl flex flex-row items-center justify-center py-[0.5rem] px-[0.75rem] border-[1px] border-solid border-gray-200 leading-[1rem] uppercase">
           ERC721
@@ -428,26 +471,25 @@ export function Home() {
         </div>
         <div />
       </div> */}
-      <div className="w-full tracking-[0.04em] uppercase text-gray-200 text-left relative -z-10">
+      <div className="w-full tracking-[0.04em] uppercase relative -z-10">
         {/* For Desktop */}
-        <span className="hidden md:block text-[12.2vw] leading-[12.275rem] w-full">
-          MINT EDITION
-        </span>
+        <Img.default
+            src="img/Edition.svg"
+            alt="MINT"
+            width={100}
+            height={100}
+            className="w-full opacity-40 hidden md:block"
+          />
         {/* For Mobile */}
-        <span className="md:hidden w-full absolute top-0 left-0">
           <Img.default
             src="img/mint.svg"
             alt="MINT"
             width={100}
             height={100}
-            className="w-full opacity-40"
+            className="w-full opacity-40 md:hidden"
           />
-        </span>
-        
-
-        {/* For Mobile */}
       </div>
-      <div className="grid grid-row-1 md:grid-cols-[1fr,2fr] lg:gap-x-3 gap-y-4 md:gap-y-0 justify-items-center w-full mt-10 md:mt-0">
+      <div className="grid grid-row-1 md:grid-cols-[1fr,2fr] lg:gap-x-3 gap-y-4 md:gap-y-0 justify-items-center w-full mt-4 md:mt-0">
         <div className="w-full flex flex-col items-start justify-start gap-y-4 text-left text-[0.75rem]">
           <div className="flex flex-col items-center justify-between w-full">
             <div className="flex flex-col items-start justify-end gap-4 md:gap-[1.25rem_0rem] w-full">
@@ -504,7 +546,7 @@ export function Home() {
           <div className="w-full flex flex-col items-center justify-start gap-1 text-[0.875rem] text-gray-600">
             <div className="self-stretch flex flex-col items-center justify-start pt-[0rem] px-[0rem] pb-[1.25rem] gap-[0.5rem_0rem]">
               <div className="self-stretch flex flex-row items-center justify-between py-[0rem] text-[0.625rem]">
-                <div className="flex flex-row gap-4 items-center">
+                <div className="flex flex-row gap-4 items-center min-h-8">
                   {/* <Attributespopver /> */}
                   <div className="tracking-[0.34px] leading-[1rem] uppercase col-start-1">
                     ATTRIBUTES
@@ -530,7 +572,7 @@ export function Home() {
                     }}
                   >
                     RESET STAKES
-                    <Cross1Icon className="size-5 text-gray-300" />
+                    <Cross1Icon className="size-3 text-gray-300" />
                   </button>
                 )}
               </div>

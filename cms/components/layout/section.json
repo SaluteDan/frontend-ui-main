@@ -27,6 +27,11 @@
     },
     "subtitle": {
       "type": "string"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.button"
     }
   }
 }
